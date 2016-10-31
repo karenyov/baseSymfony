@@ -1,6 +1,6 @@
-# base Symfony
+# Base Symfony
 ================
-Este projeto é uma base de estrutura padrão para aplicações utilizando o Framework Symfony.
+Este projeto é uma base de estrutura para aplicações utilizando o Framework Symfony.
 
 ## Requisitos
 * Composer
