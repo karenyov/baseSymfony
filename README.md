@@ -1,6 +1,6 @@
 # Base Symfony
 ================
-Este projeto é uma base de estrutura para aplicações utilizando o Framework Symfony 2.8.
+Este projeto é uma base de estrutura para aplicações utilizando o Framework Symfony 2.8 e Doctrine.
 
 ## Requisitos
 * Composer
@@ -16,3 +16,8 @@ Logo teremos como resposta:
 $ Server running on http://127.0.0.1:8000
 ```
 Abra o navegador e acesse a url: http://127.0.0.1:8000.
+
+Inserindo as tabelas do banco:
+```
+$ php app/console doctrine:schema:create
+```
