@@ -17,6 +17,11 @@ $ Server running on http://127.0.0.1:8000
 ```
 Abra o navegador e acesse a url: http://127.0.0.1:8000.
 
+Criando o banco de dados:
+```
+php app/console doctrine:database:create
+```
+
 Para inserir as tabelas no banco de dados através do Doctrine:
 ```
 $ php app/console doctrine:schema:create
