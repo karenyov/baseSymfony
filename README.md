@@ -22,5 +22,5 @@ Para inserir as tabelas no banco através do Doctrine:
 $ php app/console doctrine:schema:create
 ```
 
-##Funcionalidade
+##Funcionalidades
 * CRUD de usuário
