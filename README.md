@@ -7,7 +7,7 @@ Este projeto é uma base de estrutura para aplicações utilizando o Framework S
 * MySQL
 
 ## Início
-Para subir o servidor do projeto basta entrar no diretório do projeto e digitar:
+Para subir o servidor do projeto basta acessar o diretório do projeto através do Prompt de Comando e digitar:
 ```
 $ php app/console server:run
 ```
@@ -17,7 +17,7 @@ $ Server running on http://127.0.0.1:8000
 ```
 Abra o navegador e acesse a url: http://127.0.0.1:8000.
 
-Inserindo as tabelas do banco:
+Para inserir as tabelas no banco através do Doctrine:
 ```
 $ php app/console doctrine:schema:create
 ```
