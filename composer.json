@@ -2,7 +2,7 @@
     "name": "symfony/base-symfony",
     "license": "MIT",
     "type": "project",
-    "description": "Estrutura base no Symfony Framework",
+    "description": "Estrutura base Symfony Framework",
     "autoload": {
         "psr-4": { "": "src/" },
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]

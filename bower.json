@@ -1,0 +1,21 @@
+{
+  "name": "baseSymfony",
+  "homepage": "https://github.com/karenyov/baseSymfony",
+  "authors": [
+    "Karen Vicente <karenyasmin37@gmail.com>"
+  ],
+  "description": "Estrutura base Symfony Framework",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.1.1"
+  }
+}
