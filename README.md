@@ -2,13 +2,17 @@
 Este projeto é uma base de estrutura para aplicações utilizando o Framework Symfony 2.8 e Doctrine.
 
 ## Requisitos
-* [Composer](https://getcomposer.org/)
 * [MySQL](https://www.mysql.com/)
+* [Composer](https://getcomposer.org/)
+* [Node.js](https://nodejs.org/en/)
 
 ## Configuração inicial
 ```
 #Instalando composer
 $ composer install
+
+#Instalando bower
+$ npm install -g bower
 ```
 ```
 #Criando schema
