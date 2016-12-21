@@ -1,3 +1,8 @@
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 sysadmin:
     resource: "@SysadminBundle/Controller/"
     type:     annotation

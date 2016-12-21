@@ -3,6 +3,7 @@
 namespace SysadminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="SysadminBundle\Repository\UserRepository")
  */
-class User {
+class User extends \AppBundle\Entity\LogAbstract {
 
     /**
      * @var int
@@ -25,6 +26,7 @@ class User {
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=90)
+     * @Assert\NotBlank
      */
     private $name;
 
@@ -32,6 +34,7 @@ class User {
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=90)
+     * @Assert\NotBlank
      */
     private $email;
 
@@ -39,14 +42,47 @@ class User {
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=150)
+     * @Assert\NotBlank
      */
     private $password;
 
-    public function __get($property) {
-        return $this->$property;
+    function getId() {
+        return $this->id;
     }
 
-    public function __set($property, $value) {
-        $this->$property = $value;
+    function getName() {
+        return $this->name;
     }
+
+    function getEmail() {
+        return $this->email;
+    }
+
+    function getPassword() {
+        return $this->password;
+    }
+
+    function setId($id) {
+        $this->id = $id;
+    }
+
+    function setName($name) {
+        $this->name = $name;
+    }
+
+    function setEmail($email) {
+        $this->email = $email;
+    }
+
+    function setPassword($password) {
+        $this->password = $password;
+    }
+
+    /**
+     * @return string 
+     */
+    public function __toString() {
+        return $this->getName();
+    }
+
 }

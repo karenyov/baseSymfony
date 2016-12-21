@@ -1,12 +1,11 @@
 # Base Symfony
-================
 Este projeto é uma base de estrutura para aplicações utilizando o Framework Symfony 2.8 e Doctrine.
 
 ## Requisitos
-* Composer
-* MySQL
+* [Composer](https://getcomposer.org/)
+* [MySQL](https://www.mysql.com/)
 
-## Configurando inicial
+## Configuração inicial
 ```
 #Instalando composer
 $ composer install
@@ -29,3 +28,4 @@ $ Server running on http://127.0.0.1:8000
 Abra o navegador e acesse a url: http://127.0.0.1:8000.
 
 ##Características
+* Gerenciamento de dependências front-end com [Bower](https://bower.io/).
