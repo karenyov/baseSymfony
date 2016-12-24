@@ -1,5 +1,18 @@
 {% extends 'base.html.twig' %}
 
+{% block header %}
+    <h1 class="page-header">
+        Users <small>Statistics Overview</small>
+    </h1>
+    <ol class="breadcrumb">
+
+        <li class="active">
+            <i class="fa fa-dashboard"></i> Dashboard
+        </li>
+
+    </ol>
+{% endblock %}
+
 {% block body %}
     <h1>User</h1>
 
@@ -33,7 +46,7 @@
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+            <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>

@@ -1,5 +1,18 @@
 {% extends 'base.html.twig' %}
 
+{% block header %}
+    <h1 class="page-header">
+        Users <small>Statistics Overview</small>
+    </h1>
+    <ol class="breadcrumb">
+
+        <li class="active">
+            <i class="fa fa-dashboard"></i> Dashboard
+        </li>
+
+    </ol>
+{% endblock %}
+
 {% block body %}
     <h1>Users list</h1>
 
@@ -14,24 +27,24 @@
             </tr>
         </thead>
         <tbody>
-        {% for user in users %}
-            <tr>
-                <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
-                <td>{{ user.name }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.password }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('user_show', { 'id': user.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('user_edit', { 'id': user.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
+            {% for user in users %}
+                <tr>
+                    <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.password }}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('user_show', { 'id': user.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('user_edit', { 'id': user.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 
