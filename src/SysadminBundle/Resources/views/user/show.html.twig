@@ -2,52 +2,36 @@
 
 {% block header %}
     <h1 class="page-header">
-        Users <small>Statistics Overview</small>
+        Usuários <small>Informações do usuário no sistema</small>
     </h1>
-    <ol class="breadcrumb">
-
-        <li class="active">
-            <i class="fa fa-dashboard"></i> Dashboard
-        </li>
-
-    </ol>
 {% endblock %}
 
 {% block body %}
-    <h1>User</h1>
-
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ user.name }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('user_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('user_edit', { 'id': user.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-            <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <div class="col-sm-8 col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Usuário</h3>
+                <a class="btn btn-primary btn-xs" href="{{ path('user_edit', { 'id': user.id }) }}" style="float:right; margin-top: -20px">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </a>
+                <a href="" class="btn btn-warning btn-xs" style="float:right; margin-top: -20px">
+                    Ativo/Inativo
+                </a>
+            </div>
+            <div class="panel-body">
+                <table class="table">
+                    <tr>
+                        <th>Id</th>
+                        <td colspan="3">{{ user.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <td>{{ user.name }}</td>
+                        <th>Email</th>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                </table><br/>
+            </div>
+        </div>
+    </div>
 {% endblock %}

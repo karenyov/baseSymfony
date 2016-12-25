@@ -34,6 +34,7 @@ class User extends \AppBundle\Entity\LogAbstract {
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=90)
+     * @Assert\Email
      * @Assert\NotBlank
      */
     private $email;
@@ -41,10 +42,24 @@ class User extends \AppBundle\Entity\LogAbstract {
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=150)
+     * @ORM\Column(name="password", type="string", length=90)
      * @Assert\NotBlank
      */
     private $password;
+
+    /**
+     * @var enum
+     * 
+     * S => SIM/N => NÃO
+     * 
+     * @ORM\Column(name="active", type="string", columnDefinition="enum('S', 'N')")
+     */
+    private $active;
+
+    function __construct() {
+        $this->active = 'S';
+        parent::__construct();
+    }
 
     function getId() {
         return $this->id;
@@ -78,11 +93,18 @@ class User extends \AppBundle\Entity\LogAbstract {
         $this->password = $password;
     }
 
+    function getActive() {
+        return $this->active;
+    }
+
+    function setActive(\enum $active) {
+        $this->active = $active;
+    }
+
     /**
      * @return string 
      */
     public function __toString() {
         return $this->getName();
     }
-
 }

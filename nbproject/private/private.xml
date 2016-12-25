@@ -3,10 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/git/baseSymfony/src/AppBundle/Controller/IndexController.php</file>
+            <file>file:/E:/git/baseSymfony/src/SysadminBundle/Controller/UserController.php</file>
             <file>file:/E:/git/baseSymfony/src/AppBundle/Entity/LogAbstract.php</file>
             <file>file:/E:/git/baseSymfony/src/AppBundle/Resources/views/index/index.html.twig</file>
-            <file>file:/E:/git/baseSymfony/src/SysadminBundle/Resources/views/user/show.html.twig</file>
             <file>file:/E:/git/baseSymfony/app/Resources/views/base.html.twig</file>
             <file>file:/E:/git/baseSymfony/src/SysadminBundle/Resources/views/user/index.html.twig</file>
         </group>

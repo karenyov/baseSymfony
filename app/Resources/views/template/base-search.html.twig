@@ -1,0 +1,34 @@
+<div class="col-sm-3 col-md-3">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Pesquisar</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <table class="" width="100%">
+                    <tr>
+                        <td colspan="2">
+                            <input type="text" class="form-control" id="" name="" placeholder="Buscar...">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Incluir Inativos</td>
+                        <td style="margin-top: 10px; float:right;">
+                            <input type="checkbox" checked id="ativo" data-toggle="toggle">
+                        </td>   
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button type="button" class="btn btn-success" style="margin-top: 20px">Pesquisar</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('#ativo').bootstrapToggle('off');
+    })
+</script>

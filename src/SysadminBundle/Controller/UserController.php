@@ -5,29 +5,29 @@ namespace SysadminBundle\Controller;
 use SysadminBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * User controller.
  *
  * @Route("user")
  */
-class UserController extends Controller
-{
+class UserController extends Controller {
+
     /**
      * Lists all user entities.
      *
      * @Route("/", name="user_index")
      * @Method("GET")
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
 
         $users = $em->getRepository('SysadminBundle:User')->findAll();
 
         return $this->render('SysadminBundle:user:index.html.twig', array(
-            'users' => $users,
+                    'users' => $users,
         ));
     }
 
@@ -37,8 +37,7 @@ class UserController extends Controller
      * @Route("/new", name="user_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
-    {
+    public function newAction(Request $request) {
         $user = new User();
         $form = $this->createForm('SysadminBundle\Form\UserType', $user);
         $form->handleRequest($request);
@@ -52,8 +51,8 @@ class UserController extends Controller
         }
 
         return $this->render('SysadminBundle:user:new.html.twig', array(
-            'user' => $user,
-            'form' => $form->createView(),
+                    'user' => $user,
+                    'form' => $form->createView(),
         ));
     }
 
@@ -63,13 +62,12 @@ class UserController extends Controller
      * @Route("/{id}", name="user_show")
      * @Method("GET")
      */
-    public function showAction(User $user)
-    {
+    public function showAction(User $user) {
         $deleteForm = $this->createDeleteForm($user);
 
         return $this->render('SysadminBundle:user:show.html.twig', array(
-            'user' => $user,
-            'delete_form' => $deleteForm->createView(),
+                    'user' => $user,
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -79,8 +77,7 @@ class UserController extends Controller
      * @Route("/{id}/edit", name="user_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, User $user)
-    {
+    public function editAction(Request $request, User $user) {
         $deleteForm = $this->createDeleteForm($user);
         $editForm = $this->createForm('SysadminBundle\Form\UserType', $user);
         $editForm->handleRequest($request);
@@ -92,9 +89,9 @@ class UserController extends Controller
         }
 
         return $this->render('SysadminBundle:user:edit.html.twig', array(
-            'user' => $user,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'user' => $user,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -104,8 +101,7 @@ class UserController extends Controller
      * @Route("/{id}", name="user_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, User $user)
-    {
+    public function deleteAction(Request $request, User $user) {
         $form = $this->createDeleteForm($user);
         $form->handleRequest($request);
 
@@ -125,12 +121,11 @@ class UserController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(User $user)
-    {
+    private function createDeleteForm(User $user) {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('user_delete', array('id' => $user->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
+                        ->setAction($this->generateUrl('user_delete', array('id' => $user->getId())))
+                        ->setMethod('DELETE')
+                        ->getForm()
         ;
     }
 }
