@@ -17,7 +17,9 @@
         "sensio/distribution-bundle": "~5.0",
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "~2.0",
-        "twbs/bootstrap": "^3.3"
+        "twbs/bootstrap": "^3.3",
+        "greg0ire/enum-bundle": "^3.0",
+        "greg0ire/enum": "^2.2"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",

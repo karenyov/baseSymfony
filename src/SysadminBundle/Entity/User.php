@@ -2,8 +2,10 @@
 
 namespace SysadminBundle\Entity;
 
+use SysadminBundle\Enum\TypeYesNo;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
 
 /**
  * User
@@ -50,14 +52,15 @@ class User extends \AppBundle\Entity\LogAbstract {
     /**
      * @var enum
      * 
-     * S => SIM/N => NÃO
+     * Y => YES/N => NO
      * 
-     * @ORM\Column(name="active", type="string", columnDefinition="enum('S', 'N')")
+     * @ORM\Column(name="active", type="TypeYesNo", nullable=false)
+     * @DoctrineAssert\Enum(entity="SysadminBundle\Enum\TypeYesNo") 
      */
     private $active;
 
     function __construct() {
-        $this->active = 'S';
+        $this->active = TypeYesNo::TYPE_YES;
         parent::__construct();
     }
 
@@ -97,7 +100,7 @@ class User extends \AppBundle\Entity\LogAbstract {
         return $this->active;
     }
 
-    function setActive(\enum $active) {
+    function setActive($active) {
         $this->active = $active;
     }
 
@@ -107,4 +110,5 @@ class User extends \AppBundle\Entity\LogAbstract {
     public function __toString() {
         return $this->getName();
     }
+
 }
