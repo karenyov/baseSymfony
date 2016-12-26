@@ -26,50 +26,41 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Id</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Id'|trans, 'u.id')}}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Name'|trans, 'u.name')}}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Email'|trans, 'u.email')}}</th>
                                     <th>Status</th>
                                     <th>Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for user in users %}
+                                {% for user in pagination  %}
                                     <tr>
                                         <td><label class="checkbox-inline"><input type="checkbox" value="">&nbsp;</label></td>
                                         <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
                                         <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.name }}</a></td>
                                         <td>{{ user.email }}</td>
                                         <td>
-                                            {% if user.active == 'S' %}
+                                            {% if user.active == 'Y' %}
                                                 <b style="color: green;">Ativo</b>
                                             {% else %}
                                                 <b style="color: green;">Inativo</b>
                                             {% endif %}
                                         </td>
                                         <td>
-                                            <a href="{{ path('user_edit', { 'id': user.id }) }}" class="btn btn-primary btn-xs" title="" data-original-title="View comments">
+                                            <a href="{{ path('user_edit', { 'id': user.id }) }}" class="btn btn-primary btn-xs" title="">
                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="{{ path('user_delete', { 'id': user.id }) }}" class="btn btn-danger btn-xs" title="" data-original-title="View comments">
-                                                <i class="fa fa-trash" aria-hidden="true"></i>
                                             </a>
                                         </td>
                                     </tr>
                                 {% endfor %}
                                 <tr>
                                     <td colspan="6" style="text-align: center">
-                                        <nav aria-label="...">
-                                            <ul class="pagination">
-                                                <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                                                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                                                <li><a href="#">2</a></li>
-                                                <li><a href="#">3</a></li>
-                                                <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                                            </ul>
-                                        </nav>
+                                        <div class="navigation">
+                                            {{knp_pagination_render(pagination)}}
+                                        </div>
                                     </td>
-                                </tr>    
+                                </tr> 
                             </tbody>
                         </table><br/>
                     </div>

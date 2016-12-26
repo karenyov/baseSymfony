@@ -34,3 +34,4 @@ Abra o navegador e acesse a url: http://127.0.0.1:8000.
 ##Características
 * Gerenciamento de dependências front-end com [Bower](https://bower.io/).
 * Utilização de biblioteca para Enum: [FreshDoctrineEnumBundle](https://github.com/fre5h/DoctrineEnumBundle).
+* Utilização do [Knp Paginator](https://github.com/KnpLabs/KnpPaginatorBundle).

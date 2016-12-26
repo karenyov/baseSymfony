@@ -16,4 +16,10 @@ class UserRepository extends EntityRepository {
         
     }
 
+    public function listAll() {
+        $dql = 'SELECT u FROM SysadminBundle:User u';
+        $users = $this->getEntityManager()->createQuery($dql);
+
+        return $users->getResult();
+    }
 }

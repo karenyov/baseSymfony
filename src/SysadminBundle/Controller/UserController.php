@@ -21,13 +21,18 @@ class UserController extends Controller {
      * @Route("/", name="user_index")
      * @Method("GET")
      */
-    public function indexAction() {
+    public function indexAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
 
-        $users = $em->getRepository('SysadminBundle:User')->findAll();
+        $users = $em->getRepository('SysadminBundle:User')->listAll();
+        
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $users, $request->query->getInt('page', 1), 9
+        );
 
         return $this->render('SysadminBundle:user:index.html.twig', array(
-                    'users' => $users,
+                    'pagination' => $pagination,
         ));
     }
 
@@ -128,4 +133,5 @@ class UserController extends Controller {
                         ->getForm()
         ;
     }
+
 }
