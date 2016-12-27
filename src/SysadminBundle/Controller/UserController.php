@@ -28,7 +28,7 @@ class UserController extends Controller {
         
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $users, $request->query->getInt('page', 1), 9
+                $users, $request->query->getInt('page', 1), 10
         );
 
         return $this->render('SysadminBundle:user:index.html.twig', array(

@@ -6,11 +6,12 @@ use SysadminBundle\Enum\TypeYesNo;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
  *
- * @ORM\Table(name="user")
+ * @ORM\Table(name="sys_user")
  * @ORM\Entity(repositoryClass="SysadminBundle\Repository\UserRepository")
  */
 class User extends \AppBundle\Entity\LogAbstract {
@@ -29,6 +30,10 @@ class User extends \AppBundle\Entity\LogAbstract {
      *
      * @ORM\Column(name="name", type="string", length=90)
      * @Assert\NotBlank
+     * @Assert\Length(min = "2",max = "255", 
+     * minMessage = "Your name must be at least {{ limit }} characters length",
+     * maxMessage = "Your name cannot be longer than {{ limit }} characters length"
+     * ) 
      */
     private $name;
 
@@ -36,7 +41,7 @@ class User extends \AppBundle\Entity\LogAbstract {
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=90)
-     * @Assert\Email
+     * @Assert\Email(message = "The email '{{ value }}' is not a valid email.", checkMX = true )
      * @Assert\NotBlank
      */
     private $email;
@@ -46,6 +51,10 @@ class User extends \AppBundle\Entity\LogAbstract {
      *
      * @ORM\Column(name="password", type="string", length=90)
      * @Assert\NotBlank
+     * @Assert\Length(min = "6", max = "40",
+     * minMessage = "Your password must be at least {{ limit }} characters length",
+     * maxMessage = "Your password cannot be longer than {{ limit }} characters length"
+     * )
      */
     private $password;
 
