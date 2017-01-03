@@ -37,8 +37,8 @@
                                 {% for user in pagination  %}
                                     <tr>
                                         <td><label class="checkbox-inline"><input type="checkbox" value="">&nbsp;</label></td>
-                                        <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
-                                        <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.name }}</a></td>
+                                        <td><a href="">{{ user.id }}</a></td>
+                                        <td><a href="">{{ user.name }}</a></td>
                                         <td>{{ user.email }}</td>
                                         <td>
                                             {% if user.active == 'Y' %}
@@ -48,7 +48,7 @@
                                             {% endif %}
                                         </td>
                                         <td>
-                                            <a href="{{ path('user_edit', { 'id': user.id }) }}" class="btn btn-primary btn-xs" title="">
+                                            <a href="" class="btn btn-primary btn-xs" title="">
                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                             </a>
                                         </td>

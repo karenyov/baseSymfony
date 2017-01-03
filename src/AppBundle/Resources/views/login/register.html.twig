@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Register</title>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        <!-- Bootstrap Core CSS -->
+        <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
+
+        <!-- Bootstrap Toggle CSS -->
+        <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-toggle/css/bootstrap-toggle.min.css') }}">
+
+        <!-- Custom Fonts -->
+        <link rel="stylesheet" href="{{ asset('assets/vendor/font-awesome/css/font-awesome.min.css') }}" type="text/css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                {{ form_start(form) }}
+
+                <div class="col-sm-offset-4 col-sm-4">
+                    <div class="form-group">
+                        {{ form_widget(form) }}
+                        <button type="submit" class="btn btn-primary" style="margin-top: 20px">Criar</button>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </body>
+</html>
+
+

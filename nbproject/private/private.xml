@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/E:/git/baseSymfony/app/config/routing.yml</file>
             <file>file:/E:/git/baseSymfony/src/SysadminBundle/Controller/UserController.php</file>
-            <file>file:/E:/git/baseSymfony/src/SysadminBundle/Entity/User.php</file>
-            <file>file:/E:/git/baseSymfony/src/SysadminBundle/Resources/views/user/index.html.twig</file>
+            <file>file:/E:/git/baseSymfony/src/AppBundle/Controller/LoginController.php</file>
+            <file>file:/E:/git/baseSymfony/src/AppBundle/Resources/views/login/index.html.twig</file>
         </group>
     </open-files>
 </project-private>

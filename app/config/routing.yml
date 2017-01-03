@@ -7,4 +7,5 @@ sysadmin:
     resource: "@SysadminBundle/Controller/"
     type:     annotation
     prefix:   /
+    
 

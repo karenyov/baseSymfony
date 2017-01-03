@@ -6,15 +6,18 @@ use SysadminBundle\Enum\TypeYesNo;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+//use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * User
  *
  * @ORM\Table(name="sys_user")
  * @ORM\Entity(repositoryClass="SysadminBundle\Repository\UserRepository")
+ * @UniqueEntity("email")
  */
-class User extends \AppBundle\Entity\LogAbstract {
+class User implements AdvancedUserInterface, \Serializable {
 
     /**
      * @var int
@@ -59,6 +62,15 @@ class User extends \AppBundle\Entity\LogAbstract {
     private $password;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="role", type="string", columnDefinition="ENUM('ROLE_ADMIN', 'ROLE_USER')", length=50)
+     * @Assert\NotBlank()
+     * @Assert\Choice(choices = {"ROLE_ADMIN", "ROLE_USER"})
+     */
+    private $role;
+
+    /**
      * @var enum
      * 
      * Y => YES/N => NO
@@ -70,7 +82,7 @@ class User extends \AppBundle\Entity\LogAbstract {
 
     function __construct() {
         $this->active = TypeYesNo::TYPE_YES;
-        parent::__construct();
+        $this->role = 'ROLE_USER';
     }
 
     function getId() {
@@ -113,11 +125,71 @@ class User extends \AppBundle\Entity\LogAbstract {
         $this->active = $active;
     }
 
+    function getRole() {
+        return $this->role;
+    }
+
+    function setRole($role) {
+        $this->role = $role;
+    }
+
     /**
      * @return string 
      */
     public function __toString() {
         return $this->getName();
+    }
+
+    public function getRoles() {
+        return array($this->role);
+    }
+
+    public function getSalt() {
+        return null;
+    }
+
+    public function eraseCredentials() {
+        
+    }
+
+    public function isAccountNonExpired() {
+        return true;
+    }
+
+    public function isAccountNonLocked() {
+        return true;
+    }
+
+    public function isCredentialsNonExpired() {
+        return true;
+    }
+
+    public function getUsername() {
+        
+    }
+
+    public function isEnabled() {
+        return $this->active;
+    }
+
+    public function serialize() {
+        return serialize(array(
+            $this->id,
+            $this->name,
+            $this->email,
+            $this->password,
+            $this->active
+        ));
+    }
+
+    public function unserialize($serialized) {
+        list (
+                $this->id,
+                $this->name,
+                $this->email,
+                $this->password,
+                $this->active
+                ) = unserialize($serialized);
     }
 
 }
