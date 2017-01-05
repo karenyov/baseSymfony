@@ -19,13 +19,6 @@ class LoginController extends Controller {
     /**
      * @Route("/login", name="login")
      */
-    public function indexAction() {
-        return $this->render('AppBundle:login:index.html.twig');
-    }
-
-    /**
-     * @Route("/login", name="login")
-     */
     public function loginAction(Request $request) {
         $authenticationUtils = $this->get('security.authentication_utils');
         $error = $authenticationUtils->getLastAuthenticationError();

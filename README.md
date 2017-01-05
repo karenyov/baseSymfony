@@ -4,15 +4,12 @@ Este projeto é uma base de estrutura para aplicações utilizando o Framework S
 ## Requisitos
 * [MySQL](https://www.mysql.com/)
 * [Composer](https://getcomposer.org/)
-* [Node.js](https://nodejs.org/en/)
 
 ## Configuração inicial
 ```
 #Instalando composer
 $ composer install
 
-#Instalando bower
-$ npm install -g bower
 ```
 ```
 #Criando schema
@@ -35,3 +32,4 @@ Abra o navegador e acesse a url: http://127.0.0.1:8000.
 * Gerenciamento de dependências front-end com [Bower](https://bower.io/).
 * Utilização de biblioteca para Enum: [FreshDoctrineEnumBundle](https://github.com/fre5h/DoctrineEnumBundle).
 * Utilização do [Knp Paginator](https://github.com/KnpLabs/KnpPaginatorBundle).
+* Utilização do Template [AdminLTE](https://github.com/almasaeed2010/AdminLTE). 
