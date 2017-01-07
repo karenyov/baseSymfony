@@ -1,72 +1,51 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
+{% extends 'template/base-menu-login.html.twig' %}
 
-        <title>Login</title>
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+{% block title %}Login{% endblock %}
+{% block stylesheets %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
-        <!-- Bootstrap Core CSS -->
-        <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
 
-        <!-- Bootstrap Toggle CSS -->
-        <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-toggle/css/bootstrap-toggle.min.css') }}">
+    <!-- Bootstrap Toggle CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-toggle/css/bootstrap-toggle.min.css') }}">
 
-        <!-- Custom Fonts -->
-        <link rel="stylesheet" href="{{ asset('assets/vendor/font-awesome/css/font-awesome.min.css') }}" type="text/css">
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="{{ asset('assets/vendor/font-awesome/css/font-awesome.min.css') }}" type="text/css">
 
-        <!-- Theme style -->
-        <link rel="stylesheet" href="{{ asset('assets/vendor/AdminLTE/dist/css/AdminLTE.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/css/signin.css') }}">
+{% endblock %}
 
-        <!-- AdminLTE Skins. Choose a skin from the css/skins
-   folder instead of downloading all of them to reduce the load. -->
-        <link rel="stylesheet" href="{{ asset('assets/vendor/AdminLTE/plugins/iCheck/square/blue.css') }}">
-    </head>
-    <body class="hold-transition login-page">
-        <div class="login-box">
-            <div class="login-logo">
-                <a href="../../index2.html"><b>Admin</b>LTE</a>
-            </div>
-            <!-- /.login-logo -->
-            <div class="login-box-body">
-                <p class="login-box-msg">Sign in to start your session</p>
-                {% if error %}
-                    <div class="alert alert-danger">{{ error.message }}</div>
-                {% endif %}
-                <form action="{{ path('login_check') }}" method="post" role="form" class="form-signin">
-                    <fieldset>
-                        <input class="form-control" placeholder="E-mail" name="_username" type="text" required="true"  value="{{ last_username }}">
-                        <input class="form-control" placeholder="Password" name="_password" required="true" type="password" value="">
-                        <div class="checkbox">
-                            <label>
-                                <input name="remember" type="checkbox" value="Remember Me"> Remember Me
-                            </label>
-                        </div>
-                        <input class="btn btn-primary btn-block" type="submit" value="Login">
-                    </fieldset>
-                </form>
-                <div class="social-auth-links text-center">
-                    <p>- OR -</p>
-                    <a href="#" class="btn btn-social btn-facebook btn-block"><i class="fa fa-facebook"></i> Sign in using
-                        Facebook</a>
-                    <a href="#" class="btn btn-social btn-google btn-block"><i class="fa fa-google-plus"></i> Sign in using
-                        Google+</a>
+{% block body %}
+    <div class="container login">
+        <div class="row">
+            <h2 style="text-align: center">Login</h2><br/>
+            <div class="col-md-4 col-md-offset-4">
+                <div class="well">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.message }}</div>
+                    {% endif %}
+                    <div class="panel-body">
+                        <form action="{{ path('login_check') }}" method="post" role="form" class="form-signin">
+                            <fieldset>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="E-mail" name="_username" type="text" required="true"  value="{{ last_username }}">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Senha" name="_password" required="true" type="password" value="">
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="remember" type="checkbox" value="Remember Me"> Remember Me
+                                    </label>
+                                </div>
+                                <input class="btn btn-primary btn-block" type="submit" value="Login"><br/>
+                                <a href="{{ path('register') }}">Cadastre-se</a>
+                            </fieldset>
+                        </form>
+                    </div>
                 </div>
-                <!-- /.social-auth-links -->
-
-                <a href="#">I forgot my password</a><br>
-                <a href="{{ path('register') }}" class="text-center">Cadastre-se</a>
-
             </div>
-            <!-- /.login-box-body -->
         </div>
-        <!-- /.login-box -->
-    </body>
-    <script src="{{ asset('assets/vendor/AdminLTE/plugins/iCheck/icheck.min.js') }}"></script>
-</html>
-
-
+    </div>
+{% endblock %}

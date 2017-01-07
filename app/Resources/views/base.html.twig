@@ -32,12 +32,15 @@
             <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
             <link rel="stylesheet" href="{{ asset('assets/vendor/AdminLTE/dist/css/skins/_all-skins.min.css') }}">
+            
+            <!-- Theme style -->
+            <link rel="stylesheet" href="{{ asset('public/css/template.css') }}">
         {% endblock %}
 
         <!-- jQuery -->
         <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"></script>
     </head>
-    <body class="hold-transition skin-blue fixed sidebar-mini">
+    <body class="hold-transition skin-red fixed sidebar-mini">
         <div class="wrapper">
             <header class="main-header">
                 <!-- Logo -->
@@ -204,7 +207,7 @@
                                 <img src="{{ asset('public/img/user-160x160.jpg') }}" class="img-circle" alt="User Image">
                             </div>
                             <div class="pull-left info">
-                                <p>Alexander Pierce</p>
+                                <p>{{ app.user.name }}</p>
                                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                             </div>
                         {% else %}
