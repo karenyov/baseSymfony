@@ -23,7 +23,6 @@ class UserController extends Controller {
      */
     public function indexAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
-
         $users = $em->getRepository('SysadminBundle:User')->listAll();
 
         $paginator = $this->get('knp_paginator');
@@ -61,4 +60,27 @@ class UserController extends Controller {
                     'form' => $form->createView(),
         ));
     }
+
+    /**
+     * Displays a form to edit an existing user entity.
+     *
+     * @Route("/{id}/edit", name="user_edit")
+     * @Method({"GET", "POST"})
+     */
+    public function editAction(Request $request, User $user) {
+        $editForm = $this->createForm('SysadminBundle\Form\UserEdit', $user);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('user_edit', array('id' => $user->getId()));
+        }
+
+        return $this->render('SysadminBundle:user:edit.html.twig', array(
+                    'user' => $user,
+                    'edit_form' => $editForm->createView(),
+        ));
+    }
+
 }

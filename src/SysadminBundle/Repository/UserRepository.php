@@ -23,6 +23,10 @@ class UserRepository extends EntityRepository {
 
         return $user;
     }
+    
+    public function update() {
+        
+    }
 
     public function listAll() {
         $dql = 'SELECT u FROM SysadminBundle:User u';

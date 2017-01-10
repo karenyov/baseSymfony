@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Simples Blog{% endblock %} 
+{% block title %}Usuários{% endblock %} 
 
 {% block header %}
     <h1 class="page-header">
@@ -50,7 +50,7 @@
                                             {% endif %}
                                         </td>
                                         <td>
-                                            <a href="" class="btn btn-primary btn-xs" title="">
+                                            <a href="{{ path('user_edit', {id:user.id}) }}" class="btn btn-primary btn-xs" title="">
                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                             </a>
                                         </td>

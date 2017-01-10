@@ -1,0 +1,23 @@
+{% extends "::base.html.twig" %} 
+
+{% block title %}Usuários{% endblock %} 
+
+{% block header %}
+    <h1 class="page-header">
+        Editar Usuário <small></small>
+    </h1>
+{% endblock %}
+
+{% block body %}
+    {{ form_start(edit_form) }}
+    <div class="col-sm-offset-4 col-sm-4">
+        <div class="form-group">
+            {{ form_widget(edit_form) }}
+            <a href="{{ path('user_index') }}" class="btn btn-default" style="margin-top: 20px">
+                Voltar
+            </a>
+            <button type="submit" class="btn btn-primary" style="margin-top: 20px">Editar</button>
+        </div>
+    </div>
+    {{ form_end(edit_form) }}
+{% endblock %}
