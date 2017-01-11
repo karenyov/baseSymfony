@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Usuários{% endblock %} 
+
+{% block header %}
+    <h1 class="page-header">
+        Meu Perfil <small></small>
+    </h1>
+{% endblock %}
+
+{% block body %}
+    <div class="col-sm-12 col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Perfil</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-3 col-md-3">
+                    <div class="text-center">
+                        <img src="{{ asset('public/img/user-160x160.jpg') }}" class="avatar img-circle img-thumbnail" alt="avatar">
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <table class="table table-user-information">
+                        <thead>
+                        <th colspan="2">
+                            <h3>Meus dados</h3>
+                            <a href="{{ path('user_profile_edit', {id:user.id}) }}" class="btn btn-primary btn-xs" title="" style="float:right; margin-top: -20px">
+                               <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </a>
+                        </th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Nome</th>
+                                <td>{{ user.name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Email</th>
+                                <td>{{ user.email }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><br/>
+            </div>
+        </div>
+    </div><br/>&nbsp;
+{% endblock %}

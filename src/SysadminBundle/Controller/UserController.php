@@ -72,12 +72,46 @@ class UserController extends Controller {
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $encoder = $this->container->get('security.password_encoder');
+            $password = $encoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($password);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('user_edit', array('id' => $user->getId()));
         }
-
         return $this->render('SysadminBundle:user:edit.html.twig', array(
+                    'user' => $user,
+                    'edit_form' => $editForm->createView(),
+        ));
+    }
+
+    /**
+     * @Route("/{id}/profile", name="user_profile")
+     * @Method("GET")
+     */
+    public function profileAction(User $user) {
+        return $this->render('SysadminBundle:profile:profile.html.twig', array(
+                    'user' => $user,
+        ));
+    }
+
+    /**
+     * @Route("/{id}/profile_edit", name="user_profile_edit")
+     * @Method({"GET", "POST"})
+     */
+    public function profileEditAction(Request $request, User $user) {
+        $editForm = $this->createForm('SysadminBundle\Form\UserType', $user);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $encoder = $this->container->get('security.password_encoder');
+            $password = $encoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($password);
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('user_profile_edit', array('id' => $user->getId()));
+        }
+        return $this->render('SysadminBundle:profile:edit.html.twig', array(
                     'user' => $user,
                     'edit_form' => $editForm->createView(),
         ));

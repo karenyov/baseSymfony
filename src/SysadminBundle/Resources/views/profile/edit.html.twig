@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Usuários{% endblock %} 
+
+{% block header %}
+    <h1 class="page-header">
+        Editar Usuário <small></small>
+    </h1>
+{% endblock %}
+
+{% block body %}
+
+    <div class="col-sm-12 col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Perfil</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-3 col-md-3">
+                    <div class="text-center">
+                        <img src="{{ asset('public/img/user-160x160.jpg') }}" class="avatar img-circle img-thumbnail" alt="avatar">
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    {{ form_start(edit_form) }}
+                    <div class="form-group">
+                        {{ form_widget(edit_form) }}
+                        <a href="{{ path('user_profile', {id:user.id}) }}" class="btn btn-default" style="margin-top: 20px">
+                            Voltar
+                        </a>
+                        <button type="submit" class="btn btn-primary" style="margin-top: 20px">Editar</button>
+                    </div>
+                    {{ form_end(edit_form) }}
+                </div><br/>
+            </div>
+        </div>
+    </div><br/>&nbsp;
+{% endblock %}
