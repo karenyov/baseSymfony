@@ -14,12 +14,6 @@
             <!-- Bootstrap Core CSS -->
             <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
 
-            <!-- Bootstrap Select CSS -->
-            <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}">
-
-            <!-- Custom CSS -->
-            <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/dist/css/sb-admin.css') }}">
-
             <!-- Bootstrap Toggle CSS -->
             <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-toggle/css/bootstrap-toggle.min.css') }}">
 
@@ -208,7 +202,6 @@
                             </div>
                             <div class="pull-left info">
                                 <p>{{ app.user.name }}</p>
-                                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                             </div>
                         {% else %}
                             <div class="pull-left image">
@@ -292,3 +285,6 @@
         {% endblock %}
     </body>
 </html>
+{% block jquery %}
+
+{% endblock %}

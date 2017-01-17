@@ -117,4 +117,14 @@ class UserController extends Controller {
         ));
     }
 
+    /**
+     * @Route("/update_status", name="user_update_status")
+     * @Method({"GET", "POST"})
+     */
+    public function updateStatusAction(Request $request) {
+        $data = $request->get('users');
+        $users = json_encode($data);
+        //\Doctrine\Common\Util\Debug::dump($users); die();
+    }
+
 }
