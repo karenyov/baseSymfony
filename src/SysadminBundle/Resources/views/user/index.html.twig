@@ -27,18 +27,19 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th><button type="button" id="check-users" class="btn btn-info btn-xs">Marcar/Desmarcar</button></th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Id'|trans, 'u.id')}}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Name'|trans, 'u.name')}}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Email'|trans, 'u.email')}}</th>
                                     <th>Status</th>
                                     <th>Ações</th>
+                                    <th>
+                                        <button type="button" id="check-users" class="btn btn-info btn-xs">Marcar/Desmarcar</button>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for user in pagination  %}
                                     <tr>
-                                        <td><label class="checkbox-inline"><input type="checkbox" class="checkbox-user" name="user" value="{{ user.id }}">&nbsp;</label></td>
                                         <td><a href="">{{ user.id }}</a></td>
                                         <td><a href="">{{ user.name }}</a></td>
                                         <td>{{ user.email }}</td>
@@ -54,6 +55,7 @@
                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                             </a>
                                         </td>
+                                        <td><label class="checkbox-inline"><input type="checkbox" class="checkbox-user" name="user" value="{{ user.id }}">&nbsp;</label></td>
                                     </tr>
                                 {% endfor %}
                                 <tr>
@@ -78,10 +80,10 @@
 
             $('#check-users').click(function () {
                 $("input[type=checkbox][name='user']").each(function () {
-                    if($('.checkbox-user').prop("checked")){
-                        $(this).attr('checked', false);
+                    if ($('.checkbox-user').prop("checked")) {
+                        $(this).prop('checked', false);
                     } else {
-                        $(this).attr('checked', true);
+                        $(this).prop('checked', true);
                     }
                 });
             });
