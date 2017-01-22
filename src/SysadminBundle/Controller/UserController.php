@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * User controller.
@@ -31,6 +32,24 @@ class UserController extends Controller {
         );
 
         return $this->render('SysadminBundle:user:index.html.twig', array(
+                    'pagination' => $pagination,
+        ));
+    }
+
+    /**
+     * 
+     * @Route("/view", name="user_view")
+     */
+    public function viewAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository('SysadminBundle:User')->listAll();
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $users, $request->query->getInt('page', 1), 10
+        );
+
+        return $this->render('SysadminBundle:user:view.html.twig', array(
                     'pagination' => $pagination,
         ));
     }
@@ -123,8 +142,19 @@ class UserController extends Controller {
      */
     public function updateStatusAction(Request $request) {
         $data = $request->get('users');
-        $users = json_encode($data);
-        //\Doctrine\Common\Util\Debug::dump($users); die();
+
+        $em = $this->getDoctrine()->getManager();
+        $result = $em->getRepository('SysadminBundle:User')->updateStatus($data);
+
+        $msg = [];
+        if ($result) {
+            $msg[] = ['success' => 'Informações atualizadas.'];
+        } else {
+            $msg[] = ['error' => 'Problemas para atualizar informações.'];
+        }
+        $json = new Response(json_encode($msg));
+        
+        return $json;
     }
 
 }

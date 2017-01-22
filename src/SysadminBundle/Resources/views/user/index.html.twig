@@ -24,49 +24,51 @@
                     <div class="panel-body">
                         <div class="alert" id="message-user">
                         </div>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>{{ knp_pagination_sortable(pagination, 'Id'|trans, 'u.id')}}</th>
-                                    <th>{{ knp_pagination_sortable(pagination, 'Name'|trans, 'u.name')}}</th>
-                                    <th>{{ knp_pagination_sortable(pagination, 'Email'|trans, 'u.email')}}</th>
-                                    <th>Status</th>
-                                    <th>Ações</th>
-                                    <th>
-                                        <button type="button" id="check-users" class="btn btn-info btn-xs">Marcar/Desmarcar</button>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for user in pagination  %}
+                        <div id="users-list">
+                            <table class="table">
+                                <thead>
                                     <tr>
-                                        <td><a href="">{{ user.id }}</a></td>
-                                        <td><a href="">{{ user.name }}</a></td>
-                                        <td>{{ user.email }}</td>
-                                        <td>
-                                            {% if user.active == 'Y' %}
-                                                <b style="color: green;">Ativo</b>
-                                            {% else %}
-                                                <b style="color: green;">Inativo</b>
-                                            {% endif %}
-                                        </td>
-                                        <td>
-                                            <a href="{{ path('user_edit', {id:user.id}) }}" class="btn btn-primary btn-xs" title="">
-                                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
-                                        <td><label class="checkbox-inline"><input type="checkbox" class="checkbox-user" name="user" value="{{ user.id }}">&nbsp;</label></td>
+                                        <th>{{ knp_pagination_sortable(pagination, 'Id'|trans, 'u.id')}}</th>
+                                        <th>{{ knp_pagination_sortable(pagination, 'Name'|trans, 'u.name')}}</th>
+                                        <th>{{ knp_pagination_sortable(pagination, 'Email'|trans, 'u.email')}}</th>
+                                        <th>Status</th>
+                                        <th>Ações</th>
+                                        <th>
+                                            <button type="button" id="check-users" class="btn btn-info btn-xs">Marcar/Desmarcar</button>
+                                        </th>
                                     </tr>
-                                {% endfor %}
-                                <tr>
-                                    <td colspan="6" style="text-align: center">
-                                        <div class="navigation">
-                                            {{knp_pagination_render(pagination)}}
-                                        </div>
-                                    </td>
-                                </tr> 
-                            </tbody>
-                        </table><br/>
+                                </thead>
+                                <tbody>
+                                    {% for user in pagination  %}
+                                        <tr>
+                                            <td><a href="">{{ user.id }}</a></td>
+                                            <td><a href="">{{ user.name }}</a></td>
+                                            <td>{{ user.email }}</td>
+                                            <td>
+                                                {% if user.active == 'Y' %}
+                                                    <b style="color: green;">Ativo</b>
+                                                {% else %}
+                                                    <b style="color: red;">Inativo</b>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                <a href="{{ path('user_edit', {id:user.id}) }}" class="btn btn-primary btn-xs" title="">
+                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                </a>
+                                            </td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" class="checkbox-user" name="user" value="{{ user.id }}">&nbsp;</label></td>
+                                        </tr>
+                                    {% endfor %}
+                                    <tr>
+                                        <td colspan="6" style="text-align: center">
+                                            <div class="navigation">
+                                                {{knp_pagination_render(pagination)}}
+                                            </div>
+                                        </td>
+                                    </tr> 
+                                </tbody>
+                            </table><br/>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -78,7 +80,7 @@
         $(function () {
             $('#message-user').hide();
 
-            $('#check-users').click(function () {
+            $('#check-users').on ('click',(function () {
                 $("input[type=checkbox][name='user']").each(function () {
                     if ($('.checkbox-user').prop("checked")) {
                         $(this).prop('checked', false);
@@ -86,7 +88,7 @@
                         $(this).prop('checked', true);
                     }
                 });
-            });
+            }));
 
             $('#status').click(function () {
                 users = new Array();
@@ -94,7 +96,8 @@
                     users.push($(this).val());
                 });
                 if (users.length === 0) {
-                    $('#message-user').show().fadeOut(3000).addClass('alert-danger').html('<strong>Erro!</strong> Selecione pelo menos um usuário.');
+                    var message = '<strong>Erro!</strong> Selecione pelo menos um usuário.';
+                    $('#message-user').show().fadeOut(3000).removeClass('alert-success').addClass('alert-danger').html(message);
                 } else {
                     $.ajax({
                         type: "POST",
@@ -102,12 +105,13 @@
                         data: {'users': users},
                         dataType: 'json',
                         success: function (data) {
+                            var message = '<strong>Sucesso!</strong>' + data;
+                            $('#message-user').show().fadeOut(3000).removeClass('alert-danger').addClass('alert-success').html(message);
                         }
                     });
+                    $('#users-list').load('/user/view');
                 }
             });
-
-
         });
     </script>
 {% endblock %}

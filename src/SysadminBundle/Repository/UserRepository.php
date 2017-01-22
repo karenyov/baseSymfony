@@ -12,8 +12,34 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository {
 
-    public function updateStatus() {
-        
+    public function updateStatus($users) {
+        $whereY = [];
+        $whereN = [];
+        foreach ($users as $user) {
+            $u = $this->find((int) $user);
+            if ($u->getActive() == 'Y') {
+                $whereN[] = (int) $user;
+            } else {
+                $whereY[] = (int) $user;
+            }
+        }
+        if (!empty($whereN)) {
+            try {
+                $dql = "UPDATE SysadminBundle:User u SET u.active = 'N' WHERE u.id IN (" . implode(',', $whereN) . ")";
+                $this->getEntityManager()->createQuery($dql)->getResult();
+            } catch (Exception $e) {
+                return false;
+            }
+        }
+        if (!empty($whereY)) {
+            try {
+                $dql = "UPDATE SysadminBundle:User u SET u.active = 'Y' WHERE u.id IN (" . implode(',', $whereY) . ")";
+                $this->getEntityManager()->createQuery($dql)->getResult();
+            } catch (Exception $e) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public function insert($user) {
@@ -23,7 +49,7 @@ class UserRepository extends EntityRepository {
 
         return $user;
     }
-    
+
     public function update() {
         
     }
